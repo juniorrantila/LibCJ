@@ -1,0 +1,2 @@
+option('LibAC', type: 'feature', value: 'enabled')
+
