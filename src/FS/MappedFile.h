@@ -1,5 +1,6 @@
 #pragma once
 #include <CJ/Base.h>
+#include <CJ/StringView.h>
 
 typedef struct {
     u8 const* text;
@@ -19,4 +20,12 @@ inline static bool FSMappedFile_is_valid(FSMappedFile file)
 inline static FSMappedFile FSMappedFile_invalid(void)
 {
     return (FSMappedFile) { 0 };
+}
+
+inline static CJStringView FSMappedFile_view(FSMappedFile file)
+{
+    return (CJStringView) {
+        .text = (char const*)file.text,
+        .size = file.size,
+    };
 }
