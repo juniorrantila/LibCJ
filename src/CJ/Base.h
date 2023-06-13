@@ -9,6 +9,8 @@ static_assert(sizeof(u32) == 4, "");
 
 typedef __SIZE_TYPE__ usize;
 
+typedef char const* c_string;
+
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ <= 202000L
 #    include <stdbool.h>
 #endif
