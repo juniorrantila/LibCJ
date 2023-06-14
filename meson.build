@@ -6,4 +6,8 @@ project('playground', 'c',
     'buildtype=release',
   ])
 
+add_project_arguments([
+  '-Wno-gnu-statement-expression',
+], language: 'c')
+
 subdir('src')
