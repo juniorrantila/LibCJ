@@ -49,6 +49,9 @@ static inline CJDefer CJDefer_init(CJRange frames)
     };
 }
 
+#define CJDefer_init_static(amount) \
+    CJDefer_init(CJRange_make_static((amount) * sizeof(CJDeferFrame)))
+
 static inline void CJDefer_add_impl(CJDefer* defer, CJDeferFrame frame, char const* file, u32 line)
 {
     assert(CJDefer_is_valid(*defer));

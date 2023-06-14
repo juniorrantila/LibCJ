@@ -15,6 +15,11 @@ static inline CJRange CJRange_make(u8* data, usize size)
     };
 }
 
+#define CJRange_make_static(size) ({ \
+        static u8 buf[size]; \
+        CJRange_make(buf, size); \
+    })
+
 static inline bool CJRange_is_valid(CJRange range)
 {
     return range.data != 0;
