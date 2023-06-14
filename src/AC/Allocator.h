@@ -27,3 +27,13 @@ static inline void ACAllocator_free(ACAllocator* self, CJRange range)
 {
     self->free(self, range);
 }
+
+typedef struct {
+    CJRange range;
+    ACAllocator* allocator;
+} ACAllocatorDeferFree;
+static inline void ACAllocator_defer_free(void* ctx)
+{
+    ACAllocatorDeferFree args = *(ACAllocatorDeferFree*)ctx;
+    args.allocator->free(args.allocator, args.range);
+}

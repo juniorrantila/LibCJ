@@ -37,6 +37,16 @@ static inline void ACBump_reset(ACBump* self, usize state)
     self->index = state;
 }
 
+typedef struct {
+    ACBump* self;
+    ACBump state;
+} ACBumpDeferReset;
+static inline void ACBump_defer_reset(void* ctx)
+{
+    ACBumpDeferReset* args = (ACBumpDeferReset*)(ctx);
+    *args->self = args->state;
+}
+
 static inline CJRange ACBump_alloc(ACBump* self, usize size)
 {
     if (self->index >= self->memory.size)
