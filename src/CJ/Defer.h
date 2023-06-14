@@ -57,10 +57,11 @@ static inline void CJDefer_add_impl(CJDefer* defer, CJDeferFrame frame, char con
 }
 #define CJDefer_add(defer, frame) CJDefer_add_impl(defer, frame, __FILE__, __LINE__)
 
-static inline void CJDefer_deinit(CJDefer* defer)
+static inline void CJDefer_deinit_impl(CJDefer* defer, char const* file, u32 line)
 {
-    assert(CJDefer_is_valid(*defer));
+    ensure(CJDefer_is_valid(*defer), file, line);
     for (usize i = defer->size; i-- > 0;)
         CJDeferFrame_run(defer->frames[i]);
     *defer = CJDefer_invalid();
 }
+#define CJDefer_deinit(defer) CJDefer_deinit_impl(defer, __FILE__, __LINE__)
