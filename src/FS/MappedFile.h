@@ -29,3 +29,8 @@ inline static CJStringView FSMappedFile_view(FSMappedFile file)
         .size = file.size,
     };
 }
+
+inline static void FSMappedFile_defer_close(void* file)
+{
+    FSMappedFile_close(file);
+}
