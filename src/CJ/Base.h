@@ -17,10 +17,20 @@ typedef char const* c_string;
 #    include <stdbool.h>
 #endif
 
+#ifndef NDEBUG
 #define ensure(expr, file, line)                                                   \
     do {                                                                           \
         if (!(expr)) {                                                             \
             __builtin_printf("%s:%u: ASSERTION FAILED '%s'\n", file, line, #expr); \
-            assert(false);                                                         \
+            __builtin_trap();                                                      \
         }                                                                          \
     } while (0)
+#else
+#define ensure(expr, file, line)    \
+    do {                            \
+        (void)file;                 \
+        (void)line;                 \
+        bool __result = !(expr);    \
+        __builtin_assume(__result); \
+    } while (0)
+#endif
