@@ -4,7 +4,9 @@
 typedef unsigned char u8;
 static_assert(sizeof(u8) == 1, "");
 
+typedef signed int i32;
 typedef unsigned int u32;
+static_assert(sizeof(i32) == 4, "");
 static_assert(sizeof(u32) == 4, "");
 
 typedef __SIZE_TYPE__ usize;
