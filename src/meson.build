@@ -8,3 +8,7 @@ endif
 if get_option('LibFS').enabled()
   subdir('FS')
 endif
+
+if get_option('LibTrace').enabled()
+  subdir('Trace')
+endif

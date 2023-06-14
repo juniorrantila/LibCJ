@@ -1,3 +1,3 @@
 option('LibAC', type: 'feature', value: 'enabled')
 option('LibFS', type: 'feature', value: 'enabled')
-
+option('LibTrace', type: 'feature', value: 'enabled')
