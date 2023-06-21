@@ -12,3 +12,7 @@ endif
 if get_option('LibTrace').enabled()
   subdir('Trace')
 endif
+
+if get_option('LibFiber').enabled()
+  subdir('Fiber')
+endif
