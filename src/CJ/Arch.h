@@ -18,3 +18,7 @@
 #error "Unknown cpu family"
 #endif
 #define ARCH(query) __CJ_ARCH_##query
+
+#ifndef has_include
+#define has_include(include) __has_include(include)
+#endif
