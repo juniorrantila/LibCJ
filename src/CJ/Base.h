@@ -17,14 +17,17 @@ typedef char const* c_string;
 #    include <stdbool.h>
 #endif
 
-#ifndef NDEBUG
-#define ensure(expr, file, line)                                                   \
+#define verify_impl(expr, file, line)                                              \
     do {                                                                           \
         if (!(expr)) {                                                             \
             __builtin_printf("%s:%u: ASSERTION FAILED '%s'\n", file, line, #expr); \
             __builtin_trap();                                                      \
         }                                                                          \
     } while (0)
+#define verify(expr) verify_impl(expr, __FILE__, __LINE__)
+
+#ifndef NDEBUG
+#define ensure(expr, file, line) verify_impl(expr, file, line)
 #else
 #define ensure(expr, file, line)    \
     do {                            \
@@ -34,3 +37,5 @@ typedef char const* c_string;
         __builtin_assume(__result); \
     } while (0)
 #endif
+
+#define unimplemented() verify(!"unimplemented")
