@@ -2,6 +2,7 @@
 
 #include <errno.h>
 #include <stdio.h>
+#include <string.h>
 #include <sys/fcntl.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
@@ -44,5 +45,5 @@ void FSMappedFile_close(FSMappedFile* file)
 c_string FSMappedFile_error(FSMappedFile file)
 {
     assert(!FSMappedFile_is_valid(file));
-    return sys_errlist[file.size];
+    return strerror(file.size);
 }
