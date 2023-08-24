@@ -1,3 +1,4 @@
+#include <CJ/Arch.h>
 #include <CJ/StringView.h>
 #include <execinfo.h>
 #include <signal.h>
@@ -5,6 +6,11 @@
 #include <sys/signal.h>
 #include <unistd.h>
 
+#if OS(linux) && ARCH(arm)
+#warning "unimplemented"
+#include <assert.h>
+void Trace_register_segfault_handler(void) { assert(false && "unimplemented"); }
+#else
 static void segfault_handler(int sig, siginfo_t* info, void* arg)
 {
     (void)sig;
@@ -29,4 +35,4 @@ void Trace_register_segfault_handler(void)
     sa.sa_flags = SA_SIGINFO;
     sigaction(SIGSEGV, &sa, NULL);
 }
-
+#endif
