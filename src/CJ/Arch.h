@@ -14,6 +14,10 @@
 
 #if defined(__x86_64__)
 #define __CJ_ARCH_x86_64 1
+#elif defined(__aarch64__) || defined(_M_ARM64)
+#define __CJ_ARCH_aarch64 1
+#elif defined(__arm__)
+#define __CJ_ARCH_arm 1
 #else
 #error "Unknown cpu family"
 #endif
