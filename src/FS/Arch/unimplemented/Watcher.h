@@ -4,7 +4,7 @@
 #include <FS/WatchFlags.h>
 
 typedef struct {
-    int dummy;
+    int errno_code;
 } WatcherHandle;
 
 WatcherHandle WatcherHandle_create(int capacity);
